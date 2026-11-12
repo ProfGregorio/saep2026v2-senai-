@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Alterar Senha</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/bootstrap/bootstrap.min.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body class="bg-light">
+
+<!-- MENU -->
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<main class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-header bg-dark text-white p-4">
+
+                    <h1 class="h4 mb-1">
+                        Alterar senha
+                    </h1>
+
+                    <p class="mb-0">
+                        Atualize sua senha de acesso ao sistema.
+                    </p>
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- ERRO -->
+                    <div th:if="${erro != null}"
+                         class="alert alert-danger"
+                         th:text="${erro}">
+                    </div>
+
+                    <!-- SUCESSO -->
+                    <div th:if="${sucesso != null}"
+                         class="alert alert-success"
+                         th:text="${sucesso}">
+                    </div>
+
+                    <!-- FORMULÁRIO -->
+                    <form th:action="@{/perfil/alterar-senha}"
+                          th:object="${form}"
+                          method="post">
+
+                        <!-- SENHA ATUAL -->
+                        <div class="mb-3">
+
+                            <label for="senhaAtual"
+                                   class="form-label">
+                                Senha atual
+                            </label>
+
+                            <input type="password"
+                                   th:field="*{senhaAtual}"
+                                   class="form-control"
+                                   autocomplete="current-password"
+                                   required>
+
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!-- NOVA SENHA -->
+                        <div class="mb-3">
+
+                            <label for="novaSenha"
+                                   class="form-label">
+                                Nova senha
+                            </label>
+
+                            <input type="password"
+                                   th:field="*{novaSenha}"
+                                   class="form-control"
+                                   minlength="8"
+                                   autocomplete="new-password"
+                                   required>
+
+                            <div class="form-text">
+                                A senha deve conter pelo menos
+                                8 caracteres.
+                            </div>
+
+                        </div>
+
+                        <!-- CONFIRMAR SENHA -->
+                        <div class="mb-4">
+
+                            <label for="confirmarSenha"
+                                   class="form-label">
+                                Confirmar nova senha
+                            </label>
+
+                            <input type="password"
+                                   th:field="*{confirmarSenha}"
+                                   class="form-control"
+                                   minlength="8"
+                                   autocomplete="new-password"
+                                   required>
+
+                        </div>
+
+                        <!-- AÇÕES -->
+                        <div class="d-flex flex-wrap gap-2
+                                    justify-content-end">
+                            <a th:href="@{/dashboard}"
+                               sec:authorize="hasRole('ADMIN')"
+                               class="btn btn-outline-secondary">
+                                Cancelar
+                            </a>
+
+                            <a th:href="@{/funcionario}"
+                               sec:authorize="hasRole('FUNCIONARIO')"
+                               class="btn btn-outline-secondary">
+                                Cancelar
+                            </a>
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Salvar nova senha
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

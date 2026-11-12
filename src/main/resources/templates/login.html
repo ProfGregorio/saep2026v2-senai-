@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Tela de Login</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/bootstrap/bootstrap.min.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body class="bg-light">
+
+<!-- MENU -->
+
+<main class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-md-6 col-lg-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body p-4">
+
+                    <h1 class="h4 text-center mb-4">
+                        Acesso ao Sistema
+                    </h1>
+
+                    <!-- ERRO DE LOGIN -->
+                    <div th:if="${param.erro}"
+                         class="alert alert-danger">
+                        Usuário ou senha inválidos.
+                    </div>
+
+                    <!-- LOGOUT -->
+                    <div th:if="${param.sair}"
+                         class="alert alert-success">
+                        Você saiu do sistema.
+                    </div>
+                    <!-- CADASTRO REALIZADO -->
+                    <div th:if="${param.cadastro}"
+                         class="alert alert-success">
+
+                        Cadastro realizado com sucesso!
+                        Entre com seu e-mail e senha.
+
+                    </div>
+
+                    <!-- FORMULÁRIO -->
+                    <form th:action="@{/login}" method="post">
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">
+                                E-mail
+                            </label>
+
+                            <input type="email"
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">
+                                Senha
+                            </label>
+
+                            <input type="password"
+                                   class="form-control"
+                                   id="senha"
+                                   name="senha"
+                                   required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Entrar
+                        </button>
+                    </form>
+                    <div th:if="${param.inativo}" class="alert alert-warning">
+                        Sua conta está desativada.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

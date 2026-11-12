@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Página Modelo para os conteúdos das demais páginas do sistema">
+    <meta name="keywords" content="Modelo, Bootstrap, Sistema">
+    <meta name="author" content="SEU NOME">
+    <title>DashBoard do Sistema</title>
+    <link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-light">
+
+<!-- MENU -->
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<!-- =========================================================
+     2. CONTAINER PRINCIPAL
+     ========================================================= -->
+<main class="container py-4">
+
+    <!-- Título da página -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3">DASHBOARD</h1>
+            <p class="text-muted">
+                Descrição curta da funcionalidade.
+            </p>
+        </div>
+    </div>
+
+
+</main>
+<!-- FOOTER -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>
